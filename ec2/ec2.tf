@@ -4,11 +4,13 @@ resource "aws_instance" "nbsl_ec2" {
   count = length(var.ec2_instance_names)  # Dynamically create N EC2s
   ami                    = var.ami_ids[count.index]           # Different AMIs
   instance_type          = var.instance_types[count.index]    # Different instance types
-  subnet_id              = var.subnet_id[count.index].id    # From your existing VPC
-  vpc_security_group_ids = var.security_group_ids             # Security groups
+  subnet_id              = var.subnet_id[count.index % length(var.subnet_id)]    # If you have fewer subnets than instances then it loops over to all subnets
+  vpc_security_group_ids = var.security_group_id             # Security groups
   key_name               = var.key_name
   associate_public_ip_address = true
 
+
+#var.subnet_id[count.index] # if you want to assign specific subnet to each instance or single subnet to all instances you can use this
   # --------------------------------------------------
   # User Data: Install Docker & start container
   # --------------------------------------------------

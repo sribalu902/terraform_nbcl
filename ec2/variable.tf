@@ -13,10 +13,10 @@ variable "instance_types" {
 
 variable "subnet_id" {
   description = "List of subnet IDs for the EC2 instances"
-  type        = list(object({
-    id = string}))
+  type        = list(string) #if you want to pass multiple subnet ids you can use this or else string type for single subnet id
 }
-variable "security_group_ids" {
+
+variable "security_group_id" {
   description = "List of security group IDs to associate with the EC2 instances"
   type        = list(string)
   
