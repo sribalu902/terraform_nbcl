@@ -18,6 +18,11 @@ variable "private_subnet_azs" {
   
 }
 
+variable "cluster_name" {
+  description = "Name of the EKS cluster"
+  type        = string
+}
+
 variable "public_sg" {
   description = "Name of the security group for EC2 instances in the public subnet"
   type        = string

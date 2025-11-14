@@ -40,8 +40,12 @@ resource "aws_subnet" "private_subnets" {
   map_public_ip_on_launch = false 
 
   tags = {
-    Name = "private-subnet-${count.index}"
-  }
+  Name = "private-subnet-${count.index}"
+  Type = "private"
+  "kubernetes.io/role/internal-elb" = 1
+  "kubernetes.io/cluster/${var.cluster_name}" = "shared"
+}
+
 }
 # Allocate Elastic IP for NAT Gateway
 resource "aws_eip" "nat_eip" {

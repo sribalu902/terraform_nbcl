@@ -4,6 +4,7 @@ module  vpc  {
   private_subnet_cidrs        = var.private_subnet_cidrs
  public_subnet_azs            = var.public_subnet_azs
  private_subnet_azs           = var.private_subnet_azs
+ cluster_name                 = var.cluster_name
 }
 
 module security_group{
